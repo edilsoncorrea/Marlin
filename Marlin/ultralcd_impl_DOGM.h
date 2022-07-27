@@ -382,9 +382,9 @@ static void lcd_implementation_init() {
     u8g.begin();
   #endif
 
-  #if DISABLED(MINIPANEL) // setContrast not working for Mini Panel
+  //#if DISABLED(MINIPANEL) // setContrast not working for Mini Panel
     u8g.setContrast(lcd_contrast);
-  #endif
+  //#endif
 
   #if ENABLED(LCD_SCREEN_ROT_90)
     u8g.setRot90();   // Rotate screen by 90°
