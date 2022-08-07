@@ -54,8 +54,8 @@
 #ifndef E0_CS_PIN
   #define E0_CS_PIN                           66
 #endif
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN                           12
+#ifndef Z2_CS_PIN
+  #define Z2_CS_PIN                           12
 #endif
 
 // TMC2130 Diag Pins (currently just for reference)
@@ -63,7 +63,7 @@
 #define Y_DIAG_PIN                            14
 #define Z_DIAG_PIN                            18
 #define E0_DIAG_PIN                            2
-#define E1_DIAG_PIN                           15
+#define Z2_DIAG_PIN                           15
 
 #ifndef SERVO1_PIN
   #define SERVO1_PIN                          21
@@ -75,11 +75,11 @@
   #define SERVO3_PIN                          32
 #endif
 
-#ifndef E1_SERIAL_TX_PIN
-  #define E1_SERIAL_TX_PIN                    20
+#ifndef Z2_SERIAL_TX_PIN
+  #define Z2_SERIAL_TX_PIN                    20
 #endif
-#ifndef E1_SERIAL_RX_PIN
-  #define E1_SERIAL_RX_PIN                    12
+#ifndef Z2_SERIAL_RX_PIN
+  #define Z2_SERIAL_RX_PIN                    12
 #endif
 
 #include "pins_RAMPS.h"
