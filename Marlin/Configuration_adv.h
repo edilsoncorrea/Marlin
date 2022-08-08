@@ -3841,7 +3841,7 @@
   //#define MAIN_MENU_ITEM_4_CONFIRM
 
   #define MAIN_MENU_ITEM_5_DESC "Centralizar"
-  #define MAIN_MENU_ITEM_5_GCODE "G28\nG1 X117 Y113 Z5"
+  #define MAIN_MENU_ITEM_5_GCODE "G28\nG1 Z5\nG1 X117 Y113"
   //#define MAIN_MENU_ITEM_5_CONFIRM
 #endif
 
