@@ -468,14 +468,14 @@
 //          1   3   5   7   9
 //         VCC A5 A10 D44 A12
 //
-#define AUX2_03_PIN                           59  // (A5)
-#define AUX2_04_PIN                           63  // (A9)
-#define AUX2_05_PIN                           64  // (A10)
-#define AUX2_06_PIN                           40
-#define AUX2_07_PIN                           44
-#define AUX2_08_PIN                           42
-#define AUX2_09_PIN                           66  // (A12)
-#define AUX2_10_PIN                           65  // (A11)
+#define AUX2_03_PIN                           35 //Anterior 59  // (A5)
+#define AUX2_04_PIN                           33 //Anterior 63  // (A9)
+#define AUX2_05_PIN                           41 //Anterior 64  // (A10)
+#define AUX2_06_PIN                           40 //Anterior 31 //Anterior 40
+#define AUX2_07_PIN                           16 //Anterior 44
+#define AUX2_08_PIN                           37 //Anterior 42
+#define AUX2_09_PIN                           17 //Anterior 66  // (A12)
+#define AUX2_10_PIN                           -1 //Anterior 65  // (A11)
 
 //
 // AUX3    GND D52 D50 5V
@@ -793,6 +793,8 @@
 
         #define BTN_EN1              EXP2_05_PIN
         #define BTN_EN2              EXP2_03_PIN
+        #define LCD_BACKLIGHT_PIN     -1
+        #define LCD_CONTRAST         200
 
         //#define FORCE_SOFT_SPI                  // Use this if default of hardware SPI causes display problems
                                                   //   results in LCD soft SPI mode 3, SD soft SPI mode 0
@@ -817,18 +819,19 @@
 
     #elif ENABLED(MINIPANEL)
 
-      #define BEEPER_PIN             AUX2_08_PIN
-      #define LCD_BACKLIGHT_PIN      AUX2_10_PIN
+      #define BEEPER_PIN             37 //AUX2_08_PIN
+      #define LCD_BACKLIGHT_PIN      -1 //AUX2_10_PIN
 
-      #define DOGLCD_A0              AUX2_07_PIN
-      #define DOGLCD_CS              AUX2_09_PIN
+      #define DOGLCD_A0              16 //AUX2_07_PIN
+      #define DOGLCD_CS              17 //AUX2_09_PIN
+      #define LCD_RESET_PIN          23 
 
-      #define BTN_EN1                AUX2_06_PIN
-      #define BTN_EN2                AUX2_04_PIN
-      #define BTN_ENC                AUX2_03_PIN
+      #define BTN_EN1                31 //AUX2_06_PIN
+      #define BTN_EN2                33 //AUX2_04_PIN
+      #define BTN_ENC                35 //AUX2_03_PIN
 
-      #define SD_DETECT_PIN          AUX3_02_PIN
-      #define KILL_PIN               AUX2_05_PIN
+      #define SD_DETECT_PIN          49 //AUX3_02_PIN
+      #define KILL_PIN               41 //AUX2_05_PIN
 
     #elif ENABLED(ZONESTAR_LCD)
 
