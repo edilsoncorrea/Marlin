@@ -661,19 +661,19 @@
   #define MSG_TUNE                            _UxGT("Tune")
 #endif
 #ifndef MSG_PAUSE_PRINT
-  #define MSG_PAUSE_PRINT                     _UxGT("Pause print")
+  #define MSG_PAUSE_PRINT                     _UxGT("Pause")
 #endif
 #ifndef MSG_RESUME_PRINT
-  #define MSG_RESUME_PRINT                    _UxGT("Resume print")
+  #define MSG_RESUME_PRINT                    _UxGT("Resume")
 #endif
 #ifndef MSG_STOP_PRINT
-  #define MSG_STOP_PRINT                      _UxGT("Stop print")
+  #define MSG_STOP_PRINT                      _UxGT("Stop")
 #endif
 #ifndef MSG_POWER_LOSS_RECOVERY
   #define MSG_POWER_LOSS_RECOVERY             _UxGT("Power-Loss Recovery")
 #endif
 #ifndef MSG_CARD_MENU
-  #define MSG_CARD_MENU                       _UxGT("Print from SD")
+  #define MSG_CARD_MENU                       _UxGT("Run from SD")
 #endif
 #ifndef MSG_NO_CARD
   #define MSG_NO_CARD                         _UxGT("No SD card")
@@ -685,13 +685,13 @@
   #define MSG_USERWAIT                        _UxGT("Click to resume...")
 #endif
 #ifndef MSG_PRINT_PAUSED
-  #define MSG_PRINT_PAUSED                    _UxGT("Print paused")
+  #define MSG_PRINT_PAUSED                    _UxGT("Paused")
 #endif
 #ifndef MSG_PRINTING
-  #define MSG_PRINTING                        _UxGT("Printing...")
+  #define MSG_PRINTING                        _UxGT("Running...")
 #endif
 #ifndef MSG_PRINT_ABORTED
-  #define MSG_PRINT_ABORTED                   _UxGT("Print aborted")
+  #define MSG_PRINT_ABORTED                   _UxGT("Aborted")
 #endif
 #ifndef MSG_NO_MOVE
   #define MSG_NO_MOVE                         _UxGT("No move.")
@@ -844,7 +844,7 @@
   #define MSG_ERR_Z_HOMING                    MSG_HOME _UxGT(" ") MSG_X MSG_Y _UxGT(" ") MSG_FIRST
 #endif
 #ifndef MSG_HALTED
-  #define MSG_HALTED                          _UxGT("PRINTER HALTED")
+  #define MSG_HALTED                          _UxGT("HALTED")
 #endif
 #ifndef MSG_PLEASE_RESET
   #define MSG_PLEASE_RESET                    _UxGT("Please reset")
@@ -907,10 +907,10 @@
   #define MSG_DELTA_RADIUS                    _UxGT("Radius")
 #endif
 #ifndef MSG_INFO_MENU
-  #define MSG_INFO_MENU                       _UxGT("About Printer")
+  #define MSG_INFO_MENU                       _UxGT("About")
 #endif
 #ifndef MSG_INFO_PRINTER_MENU
-  #define MSG_INFO_PRINTER_MENU               _UxGT("Printer Info")
+  #define MSG_INFO_PRINTER_MENU               _UxGT("Info")
 #endif
 #ifndef MSG_3POINT_LEVELING
   #define MSG_3POINT_LEVELING                 _UxGT("3-Point Leveling")
@@ -928,7 +928,7 @@
   #define MSG_MESH_LEVELING                   _UxGT("Mesh Leveling")
 #endif
 #ifndef MSG_INFO_STATS_MENU
-  #define MSG_INFO_STATS_MENU                 _UxGT("Printer Stats")
+  #define MSG_INFO_STATS_MENU                 _UxGT("Stats")
 #endif
 #ifndef MSG_INFO_BOARD_MENU
   #define MSG_INFO_BOARD_MENU                 _UxGT("Board Info")
@@ -953,13 +953,13 @@
 #endif
 #if LCD_WIDTH >= 20
   #ifndef MSG_INFO_PRINT_COUNT
-    #define MSG_INFO_PRINT_COUNT              _UxGT("Print Count")
+    #define MSG_INFO_PRINT_COUNT              _UxGT("Count")
   #endif
   #ifndef MSG_INFO_COMPLETED_PRINTS
     #define MSG_INFO_COMPLETED_PRINTS         _UxGT("Completed")
   #endif
   #ifndef MSG_INFO_PRINT_TIME
-    #define MSG_INFO_PRINT_TIME               _UxGT("Total print time")
+    #define MSG_INFO_PRINT_TIME               _UxGT("Total time")
   #endif
   #ifndef MSG_INFO_PRINT_LONGEST
     #define MSG_INFO_PRINT_LONGEST            _UxGT("Longest job time")
@@ -1003,7 +1003,7 @@
   #define MSG_DAC_EEPROM_WRITE                _UxGT("DAC EEPROM Write")
 #endif
 #ifndef MSG_FILAMENT_CHANGE_HEADER_PAUSE
-  #define MSG_FILAMENT_CHANGE_HEADER_PAUSE    _UxGT("PRINT PAUSED")
+  #define MSG_FILAMENT_CHANGE_HEADER_PAUSE    _UxGT("PAUSED")
 #endif
 #ifndef MSG_FILAMENT_CHANGE_HEADER_LOAD
   #define MSG_FILAMENT_CHANGE_HEADER_LOAD     _UxGT("LOAD FILAMENT")

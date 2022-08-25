@@ -266,14 +266,61 @@ static void lcd_implementation_status_screen() {
 
     #if HAS_FAN0
       if (PAGE_CONTAINS(STATUS_SCREEN_FAN_TEXT_Y - 7, STATUS_SCREEN_FAN_TEXT_Y)) {
-        // Fan
-        const int16_t per = ((fanSpeeds[0] + 1) * 100) / 256;
-        if (per) {
-          u8g.setPrintPos(STATUS_SCREEN_FAN_TEXT_X, STATUS_SCREEN_FAN_TEXT_Y);
-          lcd_print(itostr3(per));
-          u8g.print('%');
-        }
+           u8g.setPrintPos(56, 27);
+          u8g.print('S');
+          u8g.print('p');
+          u8g.print('i');
+          u8g.print('n');
+          u8g.print('d');
+          u8g.print('l');
+          u8g.print('e');
+          u8g.print(':');
+        if( fanSpeeds[0]==0)
+        {
+          u8g.setPrintPos(104, 27);
+          u8g.print('O');
+          u8g.print('F');
+          u8g.print('F');
+          } 
+          else 
+          {
+          u8g.setPrintPos(104, 27);
+         const int16_t per = ((fanSpeeds[0] + 1) * 100) / 256;
+         lcd_print(itostr3(per));
+         u8g.print('%');
+          }
       }
+    #endif
+
+    #if HAS_FAN1
+      if (PAGE_CONTAINS(20, 27)) 
+      {
+        // Fan
+         u8g.setPrintPos(1, 27);
+          u8g.print('F');
+          u8g.print('l');
+          u8g.print('o');
+          u8g.print('o');
+          u8g.print('d');
+          u8g.print(':');
+          if( fanSpeeds[1]==0)
+        {
+     
+          u8g.print('O');
+          u8g.print('F');
+          u8g.print('F');
+        }
+        else
+        {
+          u8g.print('O');
+          u8g.print('N');
+          }
+        
+
+      
+      }
+
+       
     #endif
   }
 
