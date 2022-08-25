@@ -340,7 +340,7 @@
                            && ubl.z_values[0][0] == 0 && ubl.z_values[1][0] == 0 && ubl.z_values[2][0] == 0 )  \
                            || isnan(ubl.z_values[0][0]))
 #endif
-
+int16_t HT;
 bool Running = true;
 
 uint8_t marlin_debug_flags = DEBUG_NONE;
@@ -5866,6 +5866,7 @@ inline void gcode_G92() {
       if (parser.seen('O')) ocr_val_mode();
       else {
         const float spindle_laser_power = parser.floatval('S');
+        //fanSpeeds[1]= spindle_laser_power;
         if (spindle_laser_power == 0) {
           WRITE(SPINDLE_LASER_ENABLE_PIN, !SPINDLE_LASER_ENABLE_INVERT);                                    // turn spindle off (active low)
           delay_for_power_down();
@@ -5879,7 +5880,9 @@ inline void gcode_G92() {
             ocr_val = (SPEED_POWER_MAX - (SPEED_POWER_INTERCEPT)) * (1.0 / (SPEED_POWER_SLOPE));            // limit to max RPM
           if (SPINDLE_LASER_PWM_INVERT) ocr_val = 255 - ocr_val;
           WRITE(SPINDLE_LASER_ENABLE_PIN, SPINDLE_LASER_ENABLE_INVERT);                                     // turn spindle on (active low)
+         
           analogWrite(SPINDLE_LASER_PWM_PIN, ocr_val & 0xFF);                                               // only write low byte
+          fanSpeeds[1]= ocr_val & 0xFF;
           delay_for_power_up();
         }
       }
@@ -5895,6 +5898,7 @@ inline void gcode_G92() {
   inline void gcode_M5() {
     stepper.synchronize();
     WRITE(SPINDLE_LASER_ENABLE_PIN, !SPINDLE_LASER_ENABLE_INVERT);
+    fanSpeeds[1]=0;
     delay_for_power_down();
   }
 
@@ -7193,20 +7197,36 @@ inline void gcode_M105() {
   inline void gcode_M106() {
     uint16_t s = parser.ushortval('S', 255);
     NOMORE(s, 255);
-    const uint8_t p = parser.byteval('P', 0);
-    if (p < FAN_COUNT) fanSpeeds[p] = s;
+   // const uint8_t p = parser.byteval('P', 0);
+ //  p=0;
+   // if (p < FAN_COUNT) fanSpeeds[p] = s;
+   fanSpeeds[0] = s;
   }
 
   /**
    * M107: Fan Off
    */
   inline void gcode_M107() {
-    const uint16_t p = parser.ushortval('P');
-    if (p < FAN_COUNT) fanSpeeds[p] = 0;
+   // const uint16_t p = parser.ushortval('P');
+    //if (p < FAN_COUNT) fanSpeeds[p] = 0;
+    fanSpeeds[0] = 0;
   }
 
 #endif // FAN_COUNT > 0
-
+ inline void gcode_M7() {
+    uint16_t s = parser.ushortval('S', 255);
+    NOMORE(s, 255);
+   // const uint8_t p = parser.byteval('P', 0);
+ //  p=0;
+   // if (p < FAN_COUNT) fanSpeeds[p] = s;
+   fanSpeeds[1] = 255;
+  }
+   inline void gcode_M8() {
+   // const uint16_t p = parser.ushortval('P');
+    //if (p < FAN_COUNT) fanSpeeds[p] = 0;
+    fanSpeeds[1] = 0;
+  } 
+  
 #if DISABLED(EMERGENCY_PARSER)
 
   /**
@@ -10562,17 +10582,19 @@ void process_next_command() {
           break;
       #endif // ULTIPANEL
 
-      #if ENABLED(SPINDLE_LASER_ENABLE)
-        case 3:
-          gcode_M3_M4(true);   // M3: turn spindle/laser on, set laser/spindle power/speed, set rotation direction CW
-          break;               // synchronizes with movement commands
-        case 4:
-          gcode_M3_M4(false);  // M4: turn spindle/laser on, set laser/spindle power/speed, set rotation direction CCW
-          break;               // synchronizes with movement commands
-        case 5:
-          gcode_M5();     // M5 - turn spindle/laser off
-          break;          // synchronizes with movement commands
-      #endif
+//      #if ENABLED(SPINDLE_LASER_ENABLE)
+//        case 3:
+//          gcode_M3_M4(true);   // M3: turn spindle/laser on, set laser/spindle power/speed, set rotation direction CW
+//          break;               // synchronizes with movement commands
+//        case 4:
+//          gcode_M3_M4(false);  // M4: turn spindle/laser on, set laser/spindle power/speed, set rotation direction CCW
+//          break;               // synchronizes with movement commands
+//        case 5:
+//          gcode_M5();     // M5 - turn spindle/laser off
+//          break;          // synchronizes with movement commands
+//      #endif
+
+
       case 17: // M17: Enable all stepper motors
         gcode_M17();
         break;
@@ -10719,13 +10741,20 @@ void process_next_command() {
       #endif // HAS_TEMP_BED
 
       #if FAN_COUNT > 0
-        case 106: // M106: Fan On
+        case 3: // M106: Fan On
           gcode_M106();
           break;
-        case 107: // M107: Fan Off
+        case 5: // M107: Fan Off
           gcode_M107();
           break;
       #endif // FAN_COUNT > 0
+      
+          case 8: // Cool ON
+          gcode_M7();
+          break;
+          case 9: //Cool OFF
+          gcode_M8();
+          break;
 
       #if ENABLED(PARK_HEAD_ON_PAUSE)
         case 125: // M125: Store current position and move to filament change position
