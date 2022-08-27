@@ -168,17 +168,17 @@
   #define Z_CS_PIN                            40
 #endif
 
-#ifndef E0_STEP_PIN
-  #define E0_STEP_PIN                         26
+#ifndef Y2_STEP_PIN
+  #define Y2_STEP_PIN                         26
 #endif
-#ifndef E0_DIR_PIN
-  #define E0_DIR_PIN                          28
+#ifndef Y2_DIR_PIN
+  #define Y2_DIR_PIN                          28
 #endif
-#ifndef E0_ENABLE_PIN
-  #define E0_ENABLE_PIN                       24
+#ifndef Y2_ENABLE_PIN
+  #define Y2_ENABLE_PIN                       24
 #endif
-#ifndef E0_CS_PIN
-  #define E0_CS_PIN                           42
+#ifndef Y2_CS_PIN
+  #define Y2_CS_PIN                           42
 #endif
 
 #ifndef E1_STEP_PIN
