@@ -871,7 +871,7 @@
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 
-//#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
+#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
 //#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
@@ -4031,22 +4031,22 @@
  * Analog Joystick(s)
  * @section joystick
  */
-//#define JOYSTICK
+#define JOYSTICK
 #if ENABLED(JOYSTICK)
   #define JOY_X_PIN    5  // RAMPS: Suggested pin A5  on AUX2
   #define JOY_Y_PIN   10  // RAMPS: Suggested pin A10 on AUX2
   #define JOY_Z_PIN   12  // RAMPS: Suggested pin A12 on AUX2
   #define JOY_EN_PIN  44  // RAMPS: Suggested pin D44 on AUX2
 
-  //#define INVERT_JOY_X  // Enable if X direction is reversed
+  #define INVERT_JOY_X  // Enable if X direction is reversed
   //#define INVERT_JOY_Y  // Enable if Y direction is reversed
   //#define INVERT_JOY_Z  // Enable if Z direction is reversed
 
   // Use M119 with JOYSTICK_DEBUG to find reasonable values after connecting:
-  #define JOY_X_LIMITS { 5600, 8190-100, 8190+100, 10800 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 5600, 8250-100, 8250+100, 11000 }
+  #define JOY_X_LIMITS { 15, 15519-300, 15519+300, 16383 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS {  0,  7400-200,  7400+200, 16368 }
   #define JOY_Z_LIMITS { 4800, 8080-100, 8080+100, 11550 }
-  //#define JOYSTICK_DEBUG
+  #define JOYSTICK_DEBUG
 #endif
 
 /**
