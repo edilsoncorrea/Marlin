@@ -168,30 +168,30 @@
   #define Z_CS_PIN                            40
 #endif
 
-#ifndef Y2_STEP_PIN
-  #define Y2_STEP_PIN                         26
+#ifndef   E0_STEP_PIN
+  #define E0_STEP_PIN                         26
 #endif
-#ifndef Y2_DIR_PIN
-  #define Y2_DIR_PIN                          28
+#ifndef E0_DIR_PIN
+  #define E0_DIR_PIN                          28
 #endif
-#ifndef Y2_ENABLE_PIN
-  #define Y2_ENABLE_PIN                       24
+#ifndef E0_ENABLE_PIN
+  #define E0_ENABLE_PIN                       24
 #endif
-#ifndef Y2_CS_PIN
-  #define Y2_CS_PIN                           42
+#ifndef E0_CS_PIN
+  #define E0_CS_PIN                           42
 #endif
 
-#ifndef E1_STEP_PIN
-  #define E1_STEP_PIN                         36
+#ifndef Y2_STEP_PIN
+  #define Y2_STEP_PIN                         36
 #endif
-#ifndef E1_DIR_PIN
-  #define E1_DIR_PIN                          34
+#ifndef Y2_DIR_PIN
+  #define Y2_DIR_PIN                          34
 #endif
-#ifndef E1_ENABLE_PIN
-  #define E1_ENABLE_PIN                       30
+#ifndef Y2_ENABLE_PIN
+  #define Y2_ENABLE_PIN                       30
 #endif
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN                           44
+#ifndef Y2_CS_PIN
+  #define Y2_CS_PIN                           44
 #endif
 
 //
@@ -309,6 +309,12 @@
     #error "No auto-assignable Spindle/Laser pins available."
   #endif
 #endif
+
+//
+// M7/M8/M9 - Coolant Control
+//
+//#define COOLANT_MIST_PIN                    10
+#define COOLANT_FLOOD_PIN                     58//MOSFET_B_PIN
 
 //
 // TMC software SPI
