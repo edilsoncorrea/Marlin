@@ -164,7 +164,7 @@
 #define Y_DRIVER_TYPE  TB6600
 #define Z_DRIVER_TYPE  TB6600
 //#define X2_DRIVER_TYPE A4988
-//#define Y2_DRIVER_TYPE TB6600
+#define Y2_DRIVER_TYPE TB6600
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
@@ -1174,7 +1174,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 35, 35, 35 }
+#define DEFAULT_MAX_FEEDRATE          { 35, 20, 35 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
