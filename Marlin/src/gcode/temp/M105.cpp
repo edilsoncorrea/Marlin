@@ -33,15 +33,18 @@ void GcodeSuite::M105() {
 
   SERIAL_ECHOPGM(STR_OK);
 
-  #if HAS_TEMP_SENSOR
+  // #if HAS_TEMP_SENSOR
 
-    thermalManager.print_heater_states(target_extruder OPTARG(HAS_TEMP_REDUNDANT, parser.boolval('R')));
+  //   thermalManager.print_heater_states(target_extruder OPTARG(HAS_TEMP_REDUNDANT, parser.boolval('R')));
 
-    SERIAL_EOL();
+  //   SERIAL_EOL();
 
-  #else
+  // #else
 
-    SERIAL_ECHOLNPGM(" T:0"); // Some hosts send M105 to test the serial connection
+  //   SERIAL_ECHOLNPGM(" T:0"); // Some hosts send M105 to test the serial connection
 
-  #endif
+  // #endif
+
+  SERIAL_EOL();
+
 }
