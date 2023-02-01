@@ -540,7 +540,7 @@
   //#define CONTROLLER_FAN_IGNORE_Z         // Ignore Z stepper. Useful when stepper timeout is disabled.
   #define CONTROLLERFAN_SPEED_MIN         0 // (0-255) Minimum speed. (If set below this value the fan is turned off.)
   #define CONTROLLERFAN_SPEED_ACTIVE    255 // (0-255) Active speed, used when any motor is enabled
-  #define CONTROLLERFAN_SPEED_IDLE       30 // (0-255) Idle speed, used when motors are disabled
+  #define CONTROLLERFAN_SPEED_IDLE       80 // (0-255) Idle speed, used when motors are disabled
   #define CONTROLLERFAN_IDLE_TIME        10 // (seconds) Extra time to keep the fan running after disabling motors
 
   // Use TEMP_SENSOR_BOARD as a trigger for enabling the controller fan
@@ -3403,7 +3403,7 @@
 #define SPINDLE_FEATURE
 //#define LASER_FEATURE
 #if EITHER(SPINDLE_FEATURE, LASER_FEATURE)
-  #define SPINDLE_LASER_ACTIVE_STATE    HIGH    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
+  #define SPINDLE_LASER_ACTIVE_STATE    LOW    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
 
   #define SPINDLE_LASER_USE_PWM                // Enable if your controller supports setting the speed/power
   #if ENABLED(SPINDLE_LASER_USE_PWM)
@@ -3831,7 +3831,7 @@
   #define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
   #define MAIN_MENU_ITEM_2_DESC "Parking"
-  #define MAIN_MENU_ITEM_2_GCODE "G28\nG1 F1000 Y350"
+  #define MAIN_MENU_ITEM_2_GCODE "G28\nG1 F1000 Y320"
   #define MAIN_MENU_ITEM_2_CONFIRM
 
   #define MAIN_MENU_ITEM_3_DESC "Zerar Eixos"
@@ -3885,30 +3885,30 @@
  * User-defined buttons to run custom G-code.
  * Up to 25 may be defined.
  */
-//#define CUSTOM_USER_BUTTONS
+#define CUSTOM_USER_BUTTONS
 #if ENABLED(CUSTOM_USER_BUTTONS)
-  //#define BUTTON1_PIN -1
+  #define BUTTON1_PIN 40
   #if PIN_EXISTS(BUTTON1)
     #define BUTTON1_HIT_STATE     LOW       // State of the triggered button. NC=LOW. NO=HIGH.
     #define BUTTON1_WHEN_PRINTING false     // Button allowed to trigger during printing?
-    #define BUTTON1_GCODE         "G28"
-    #define BUTTON1_DESC          "Homing"  // Optional string to set the LCD status
+    #define BUTTON1_GCODE         "G92 X0 Y0 Z0"
+    #define BUTTON1_DESC          "Zerar Eixos"  // Optional string to set the LCD status
   #endif
 
-  //#define BUTTON2_PIN -1
+  #define BUTTON2_PIN 42
   #if PIN_EXISTS(BUTTON2)
     #define BUTTON2_HIT_STATE     LOW
     #define BUTTON2_WHEN_PRINTING false
-    #define BUTTON2_GCODE         "M112"
-    #define BUTTON2_DESC          "Emergencia"
+    #define BUTTON2_GCODE         "G28"
+    #define BUTTON2_DESC          "Homing"  // Optional string to set the LCD status
   #endif
 
-  //#define BUTTON3_PIN -1
+  //#define BUTTON3_PIN 1
   #if PIN_EXISTS(BUTTON3)
     #define BUTTON3_HIT_STATE     LOW
-    #define BUTTON3_WHEN_PRINTING false
-    #define BUTTON3_GCODE         "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
-    #define BUTTON3_DESC          "Preheat for " PREHEAT_2_LABEL
+    #define BUTTON3_WHEN_PRINTING true
+    #define BUTTON3_GCODE         "M112"
+    #define BUTTON3_DESC          "Emergencia"
   #endif
 #endif
 
@@ -4048,9 +4048,9 @@
   //#define INVERT_JOY_Z  // Enable if Z direction is reversed
 
   // Use M119 with JOYSTICK_DEBUG to find reasonable values after connecting:
-  #define JOY_X_LIMITS { 15, 15519-300, 15519+300, 16383 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS {  0,  7400-200,  7400+200, 16368 }
-  #define JOY_Z_LIMITS { 4800, 8080-100, 8080+100, 11550 }
+  #define JOY_X_LIMITS { 15, 8000-600, 8000+600, 16383 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS {  0,  8000-600,  8000+600, 16368 }
+  #define JOY_Z_LIMITS { 0, 8000-600, 8000+600, 16352 }
   #define JOYSTICK_DEBUG
 #endif
 
