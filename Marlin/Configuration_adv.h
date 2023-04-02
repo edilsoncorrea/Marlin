@@ -3439,7 +3439,7 @@
    *  - RPM     (S0 - S50000)  Best for use with a spindle
    *  - SERVO   (S0 - S180)
    */
-  #define CUTTER_POWER_UNIT PERCENT
+  #define CUTTER_POWER_UNIT PWM255
 
   /**
    * Relative Cutter Power
@@ -3524,7 +3524,7 @@
      * CUTTER_MODE_CONTINUOUS. The option allows M3 laser power to be commited without waiting
      * for a planner syncronization
      */
-    #define LASER_POWER_SYNC
+    //#define LASER_POWER_SYNC
 
     /**
      * Scale the laser's power in proportion to the movement rate.
