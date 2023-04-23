@@ -221,7 +221,7 @@
   #define MOSFET_A_PIN                        57 //10 Original da impressora. Trocado para usar o o mosfet da controladora para controlar o fan para os drivers
 #endif
 #ifndef MOSFET_B_PIN
-  #define MOSFET_B_PIN                         9
+  #define MOSFET_B_PIN                         1 //9 Original da impressora. Trocado para usar o o mosfet da controladora para controlar mist
 #endif
 #ifndef MOSFET_C_PIN
   #define MOSFET_C_PIN                         58 //8 Original da impressora. Trocado para usar o o mosfet da controladora para controlar coolant
@@ -313,8 +313,8 @@
 //
 // M7/M8/M9 - Coolant Control
 //
-//#define COOLANT_MIST_PIN                    10
-#define COOLANT_FLOOD_PIN                      8//58//MOSFET_B_PIN
+#define COOLANT_MIST_PIN                       9//10//MOSFET_B_PIN
+#define COOLANT_FLOOD_PIN                      8//58//MOSFET_C_PIN
 
 //
 // TMC software SPI
