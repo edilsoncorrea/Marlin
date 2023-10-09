@@ -440,7 +440,8 @@ FORCE_INLINE void _draw_axis_value(const AxisEnum axis, const char *value, const
   else if (axis_should_home(axis))
     while (const char c = *value++) lcd_put_lchar(c <= '.' ? c : '?');
   else if (NONE(HOME_AFTER_DEACTIVATE, DISABLE_REDUCED_ACCURACY_WARNING) && !axis_is_trusted(axis))
-    lcd_put_u8str(axis == Z_AXIS ? F("       ") : F("    "));
+    //lcd_put_u8str(axis == Z_AXIS ? F("       ") : F("    "));
+    lcd_put_u8str(value);
   else
     lcd_put_u8str(value);
 }
@@ -502,7 +503,8 @@ void MarlinUI::draw_status_screen() {
 
     const xyz_pos_t lpos = current_position.asLogical();
     const bool is_inch = parser.using_inch_units();
-    strcpy(zstring, is_inch ? ftostr42_52(LINEAR_UNIT(lpos.z)) : ftostr52sp(lpos.z));
+    //strcpy(zstring, is_inch ? ftostr42_52(LINEAR_UNIT(lpos.z)) : ftostr52sp(lpos.z));
+    strcpy(zstring, is_inch ? ftostr42_52(LINEAR_UNIT(lpos.x)) : ftostr52sp(lpos.x));
 
     if (show_e_total) {
       #if ENABLED(LCD_SHOW_E_TOTAL)
@@ -897,7 +899,7 @@ void MarlinUI::draw_status_screen() {
 
       #endif
 
-      _draw_axis_value(Z_AXIS, zstring, blink);
+      //_draw_axis_value(Z_AXIS, zstring, blink);
 
       #if NONE(XYZ_NO_FRAME, XYZ_HOLLOW_FRAME)
         u8g.setColorIndex(1); // black on white
