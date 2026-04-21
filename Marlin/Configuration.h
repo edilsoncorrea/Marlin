@@ -87,7 +87,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_MKS_GEN_L_V21
+  #define MOTHERBOARD BOARD_MKS_TINYBEE
 #endif
 
 /**
@@ -112,6 +112,7 @@
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
 #define BAUDRATE 250000
+
 #define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
 /**
@@ -157,12 +158,15 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TMC2209
-#define Y_DRIVER_TYPE  TMC2209
-#define Z_DRIVER_TYPE  TMC2209
+// TinyBee migration note:
+// TMC2209 is set to STANDALONE on all used axes. Current/chopper settings are not sent by UART,
+// so motor current must be adjusted physically via VREF on each driver.
+#define X_DRIVER_TYPE  TMC2209_STANDALONE
+#define Y_DRIVER_TYPE  TMC2209_STANDALONE
+#define Z_DRIVER_TYPE  TMC2209_STANDALONE
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
-#define Z2_DRIVER_TYPE TMC2209
+#define Z2_DRIVER_TYPE TMC2209_STANDALONE
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
 //#define I_DRIVER_TYPE  A4988
@@ -1300,7 +1304,11 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
-#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
+#define Z_MIN_PROBE_PIN 35 // TinyBee: avoid Y endstop conflict on GPIO32
+// TinyBee migration note (physical wiring):
+// - Keep Z endstop on Z_STOP (GPIO22)
+// - Move BLTouch trigger/signal to GPIO35 (input-only, suitable for probe signal)
+// - BLTouch servo remains on SERVO0 (board default)
 
 /**
  * Probe Type
@@ -3277,7 +3285,10 @@
  *
  * LED Type. Enable only one of the following two options.
  */
-#define RGB_LED
+// TinyBee migration note:
+// RGB discrete pins from the old board were not kept because GPIO25/GPIO27 are used by I2S stepper stream.
+// To keep status lighting without pin-file changes, use NEOPIXEL_LED (already enabled) on TinyBee EXP1 mapping.
+//#define RGB_LED
 //#define RGBW_LED
 
 #if EITHER(RGB_LED, RGBW_LED)
